@@ -1,0 +1,226 @@
+#include <Servo.h>
+Servo s1;
+Servo s2;
+#define range 30
+#define trig1 22
+#define echo1 23
+#define trig2 24
+#define echo2 25
+#define trig3 26
+#define echo3 27
+#define trig4 28
+#define echo4 29
+#define trig5 30
+#define echo5 31
+#define trig6 32
+#define echo6 33
+#define trig7 34
+#define echo7 35
+#define buzzer 2
+
+void setup() {
+  s1.attach(6);
+  s2.attach(7);
+  pinMode(trig1,OUTPUT);
+  pinMode(echo1,INPUT);
+  pinMode(trig2,OUTPUT);
+  pinMode(echo2,INPUT);
+  pinMode(trig3,OUTPUT);
+  pinMode(echo3,INPUT);
+  pinMode(trig4,OUTPUT);
+  pinMode(echo4,INPUT);
+  pinMode(trig5,OUTPUT);
+  pinMode(echo5,INPUT);
+  pinMode(trig6,OUTPUT);
+  pinMode(echo6,INPUT);
+  pinMode(trig7,OUTPUT);
+  pinMode(echo7,INPUT);
+  pinMode(buzzer,OUTPUT);
+  pinMode(5,OUTPUT);
+
+}
+
+void loop() {
+  digitalWrite(5,LOW);
+  
+for(int i=0;i<=180;i=i+2){
+  s2.write(i);
+  digitalWrite(trig1,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig1,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig1,LOW);
+  long t1=pulseIn(echo1,HIGH);
+  long cm1=t1/29/2;
+
+  digitalWrite(trig2,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig2,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig2,LOW);
+  long t2=pulseIn(echo2,HIGH);
+  long cm2=t2/29/2;
+
+  digitalWrite(trig3,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig3,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig3,LOW);
+  long t3=pulseIn(echo3,HIGH);
+  long cm3=t3/29/2;
+
+  digitalWrite(trig4,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig4,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig4,LOW);
+  long t4=pulseIn(echo4,HIGH);
+  long cm4=t4/29/2;
+
+  digitalWrite(trig5,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig5,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig5,LOW);
+  long t5=pulseIn(echo5,HIGH);
+  long cm5=t5/29/2;
+  
+  digitalWrite(trig6,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig6,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig6,LOW);
+  long t6=pulseIn(echo6,HIGH);
+  long cm6=t6/29/2;
+
+  if(cm1<range||cm2<range||cm3<range||cm4<range||cm5<range||cm6<range){
+    s2.write(i+5);
+    
+      for(int j=0;j<181;j++){
+          s1.write(j);
+          digitalWrite(trig7,LOW);
+          delayMicroseconds(2);
+          digitalWrite(trig7,HIGH);
+          delayMicroseconds(10);
+          digitalWrite(trig7,LOW);
+          long t7=pulseIn(echo7,HIGH);
+          long cm7=t7/29/2;
+      
+          if(cm7<range){
+              s1.write(j+5);
+              digitalWrite(5,HIGH);
+              
+              for(int x=0;x<8;x++){
+              digitalWrite(2,HIGH);
+              delay(250);
+              digitalWrite(2,LOW);
+              delay(250);
+              }
+                
+              digitalWrite(5,LOW);
+              
+              s1.write(0);
+              
+              break;
+          }
+          
+          
+      }
+      digitalWrite(5,LOW);
+      for(int k=185;k>-1;k--){
+          s1.write(k);
+          delay(10);
+      }
+  }
+}
+
+for(int i=180;i>=0;i=i-2){
+  s2.write(i);
+  digitalWrite(trig1,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig1,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig1,LOW);
+  long t1=pulseIn(echo1,HIGH);
+  long cm1=t1/29/2;
+
+  digitalWrite(trig2,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig2,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig2,LOW);
+  long t2=pulseIn(echo2,HIGH);
+  long cm2=t2/29/2;
+
+  digitalWrite(trig3,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig3,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig3,LOW);
+  long t3=pulseIn(echo3,HIGH);
+  long cm3=t3/29/2;
+
+  digitalWrite(trig4,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig4,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig4,LOW);
+  long t4=pulseIn(echo4,HIGH);
+  long cm4=t4/29/2;
+
+  digitalWrite(trig5,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig5,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig5,LOW);
+  long t5=pulseIn(echo5,HIGH);
+  long cm5=t5/29/2;
+  
+  digitalWrite(trig6,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig6,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig6,LOW);
+  long t6=pulseIn(echo6,HIGH);
+  long cm6=t6/29/2;
+
+  if(cm1<range||cm2<range||cm3<range||cm4<range||cm5<range||cm6<range){
+      s2.write(i+5);
+      
+      for(int j=0;j<185;j++){
+          s1.write(j);
+          digitalWrite(trig7,LOW);
+          delayMicroseconds(2);
+          digitalWrite(trig7,HIGH);
+          delayMicroseconds(10);
+          digitalWrite(trig7,LOW);
+          long t7=pulseIn(echo7,HIGH);
+          long cm7=t7/29/2;
+      
+          if(cm7<range){
+              s1.write(j+5);
+              digitalWrite(5,HIGH);
+              for(int x=0;x<8;x++){
+              digitalWrite(2,HIGH);
+              delay(250);
+              digitalWrite(2,LOW);
+              delay(250);
+              }
+              
+              
+              digitalWrite(5,LOW);
+              s1.write(0);
+              break;
+          }
+          
+          
+      }
+      digitalWrite(5,LOW);
+      for(int k=185;k>-1;k--){
+          s1.write(k);
+          delay(10);
+      }
+  }
+}
+}
+
